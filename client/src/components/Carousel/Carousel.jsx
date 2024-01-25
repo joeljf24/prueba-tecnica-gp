@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { images } from '../../utils/data';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -22,9 +22,32 @@ const Carousel = () => {
     setCurrentIndex(nextIndex);
   };
 
+  useEffect(() => {
+    let intervalId;
+
+    if (!isMouseOver) {
+      intervalId = setInterval(() => {
+        handleNext();
+      }, 3000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [currentIndex, isMouseOver]);
+
   return (
     <div className='flex items-center'>
-      <div className='relative overflow-hidden items-center max-w-4xl lg:h-[500px] rounded-3xl'>
+      <div
+        className='hidden lg:flex overflow-hidden rounded-l-xl h-[150px] backdrop-blur-xl'
+        style={{ width: '200px' }}
+      >
+        <img src={images[prevIndex]} alt={prevIndex} className='text-white text-xl font-bold opacity-70' />
+      </div>
+
+      <div
+        className='relative overflow-hidden items-center max-w-4xl lg:h-[500px] rounded-3xl'
+        onMouseEnter={() => setIsMouseOver(true)}
+        onMouseLeave={() => setIsMouseOver(false)}
+      >
         <div>
           <div className='flex transition-transform ease-out duration-400' style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {images.map((image, index) => (
@@ -45,6 +68,13 @@ const Carousel = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div
+        className='hidden lg:flex overflow-hidden rounded-r-xl h-[150px] backdrop-blur-xl'
+        style={{ width: '200px' }}
+      >
+        <img src={images[nextIndex]} alt={nextIndex} className='text-white text-xl font-bold opacity-70' />
       </div>
     </div>
   );
