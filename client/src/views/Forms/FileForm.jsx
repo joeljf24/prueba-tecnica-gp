@@ -1,4 +1,5 @@
 import axios from 'axios';
+import validations from "./validations";
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -31,11 +32,23 @@ const FileForm = () => {
                 ...prevData,
                 [name]: file,
             }));
+            setErrors(
+                validations({
+                    ...prevData,
+                    [name]: file,
+                })
+            );
         } else {
             setData((prevData) => ({
                 ...prevData,
                 [name]: value,
             }));
+            setErrors(
+                validations({
+                    ...prevData,
+                    [name]: value,
+                })
+            );
         }
     };
 
@@ -66,7 +79,7 @@ const FileForm = () => {
             });
             setPdfPreviewUrl(null);
             setErrors({});
-            
+
         } catch (error) {
             console.error('Error al subir el PDF:', error);
             alert('Error al subir el PDF');

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useState } from "react";
+import validations from "./validations";
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
@@ -18,16 +19,17 @@ const UserForm = () => {
             ...prevData,
             [name]: value,
         }));
+        setErrors(validations({ ...data, [name]: value }, name));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:3001/api/prueba/users", data);
+            const response = await axios.post('http://localhost:3001/api/prueba/users', data);
 
-            console.log("Response:", response.data);
-            alert('Contacto guardado con éxito');
+            console.log('Response:', response.data);
+            alert('Contacto creado con éxito');
 
             setData({
                 nombre: '',
@@ -36,13 +38,14 @@ const UserForm = () => {
                 fecha: '',
             });
         } catch (error) {
-            console.error("Error creating user:", error);
+            console.error('Error creating user:', error);
+            alert('No fue posible crear el contacto');
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col items-center justify-center lg:h-screen text-white">
+            <div className='flex flex-col items-center justify-center lg:h-screen text-white'>
                 <div className='flex flex-col items-center justify-center lg:h-screen text-white'>
                     <div className='bg-black/40 backdrop-blur-xl rounded-xl p-5 mt-5 lg:mt-0'>
                         <NavLink to='/upload' className={`flex justify-start items-center mb-5 pl-5 pt-3`}>
@@ -56,51 +59,51 @@ const UserForm = () => {
                                 </div>
 
                                 <div className='flex flex-col w-72 items-start mb-5'>
-                                    <label className="mb-4">Introduzca el nombre:</label>
+                                    <label className='mb-4'>Introduzca el nombre:</label>
                                     <input
-                                        type="text"
-                                        name="nombre"
+                                        type='text'
+                                        name='nombre'
                                         value={data.nombre}
-                                        className="w-full p-2 rounded-md bg-transparent border-white border"
-                                        placeholder="Nombre..."
+                                        className='w-full p-2 rounded-md bg-transparent border-white border'
+                                        placeholder='Nombre...'
                                         onChange={handleChange}
                                     />
-                                    {errors.file && <p className="text-red">{errors.file}</p>}
+                                    {errors.nombre && <p className='text-red'>{errors.nombre}</p>}
                                 </div>
                                 <div className='flex flex-col items-start mb-5'>
-                                    <label className="mb-4">Introduzca el apellido:</label>
+                                    <label className='mb-4'>Introduzca el apellido:</label>
                                     <input
-                                        type="text"
-                                        name="apellido"
+                                        type='text'
+                                        name='apellido'
                                         value={data.apellido}
-                                        className="w-full p-2 rounded-md bg-transparent border-white border"
-                                        placeholder="Apellido..."
+                                        className='w-full p-2 rounded-md bg-transparent border-white border'
+                                        placeholder='Apellido...'
                                         onChange={handleChange}
                                     />
-                                    {errors.file && <p className="text-red">{errors.file}</p>}
+                                    {errors.apellido && <p className='text-red'>{errors.apellido}</p>}
                                 </div>
-                                <div className="flex flex-col items-start mb-5">
-                                    <label className="mb-4">Introduzca el número:</label>
+                                <div className='flex flex-col items-start mb-5'>
+                                    <label className='mb-4'>Introduzca el número:</label>
                                     <input
-                                        type="text"
-                                        name="numero"
+                                        type='text'
+                                        name='numero'
                                         value={data.numero}
-                                        className="w-full p-2 rounded-md bg-transparent border-white border"
-                                        placeholder="Número..."
+                                        className='w-full p-2 rounded-md bg-transparent border-white border'
+                                        placeholder='Número...'
                                         onChange={handleChange}
                                     />
-                                    {errors.file && <p className="text-red">{errors.file}</p>}
+                                    {errors.numero && <p className='text-red'>{errors.numero}</p>}
                                 </div>
-                                <div className="flex flex-col items-start mb-5">
-                                    <label className="mb-4">Introduzca el cumpleaños:</label>
+                                <div className='flex flex-col items-start mb-5'>
+                                    <label className='mb-4'>Introduzca el cumpleaños:</label>
                                     <input
-                                        type="date"
-                                        name="fecha"
+                                        type='date'
+                                        name='fecha'
                                         value={data.fecha}
-                                        className="w-full p-2 rounded-md bg-transparent border-white border"
+                                        className='w-full p-2 rounded-md bg-transparent border-white border'
                                         onChange={handleChange}
                                     />
-                                    {errors.file && <p className="text-red">{errors.file}</p>}
+                                    {errors.fecha && <p className='text-red'>{errors.fecha}</p>}
                                 </div>
                             </div>
                             <div className='flex flex-col items-start lg:pl-14 lg:pr-6 lg:border-l lg:border-white'>
