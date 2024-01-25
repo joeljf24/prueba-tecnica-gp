@@ -1,0 +1,10 @@
+body {
+    background-image: url(../public/fondo.jpg);
+    background-image: no-repeat;
+    background-image: fixed;
+    background-image: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    text-align: center;
+  }
