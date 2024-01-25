@@ -59,7 +59,7 @@ const Files = () => {
           <hr className='w-full mb-5' />
           <div className='grid grid-cols-1 md:grid-cols-5 gap-5'>
             {contacts && contacts.map(({ id, nombre, apellido, numero, fecha }) => (
-              <div key={id} className='bg-black/40 backdrop-blur-xl p-3 rounded-md'>
+              <div key={id} className='bg-black/40 backdrop-blur-xl p-3 rounded-md text-left'>
                 <h4>Nombre completo:</h4>
                 <p>{nombre} {apellido}</p>
                 <h4>Número:</h4>

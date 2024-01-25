@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
@@ -12,25 +13,32 @@ const UserForm = () => {
     })
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-
-        // Si es un campo de archivo, actualiza 'file' con el primer archivo seleccionado
-        if (name === "file") {
-            setData((prevData) => ({
-                ...prevData,
-                [name]: files[0],
-            }));
-        } else {
-            setData((prevData) => ({
-                ...prevData,
-                [name]: value,
-            }));
-        }
+        const { name, value } = e.target;
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    }
+
+        try {
+            const response = await axios.post("http://localhost:3001/api/prueba/users", data);
+
+            console.log("Response:", response.data);
+            alert('Contacto guardado con éxito');
+
+            setData({
+                nombre: '',
+                apellido: '',
+                numero: '',
+                fecha: '',
+            });
+        } catch (error) {
+            console.error("Error creating user:", error);
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
