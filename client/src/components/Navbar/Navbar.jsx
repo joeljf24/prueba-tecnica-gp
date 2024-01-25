@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className='fixed flex justify-between items-center text-white lg:py-5 w-full'>
+    <nav className='lg:fixed flex justify-between items-center text-white lg:py-5 z-10 w-full lg:backdrop-blur-xl'>
       <NavLink to='/'>
         <div className='flex items-center gap-3 pt-3 lg:pt-0'>
           <img src='/nube.png' alt="" className='w-16 h-auto ml-6 lg:ml-24' />

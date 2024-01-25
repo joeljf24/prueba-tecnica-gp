@@ -4,7 +4,7 @@ import { FaChevronLeft } from "react-icons/fa";
 const Upload = () => {
   return (
     <div className='flex items-center justify-center h-screen text-white'>
-      <div className="flex flex-col bg-white/10 backdrop-blur-xl rounded-3xl p-10 lg:mb-0 gap-10">
+      <div className="flex flex-col bg-black/40 backdrop-blur-xl rounded-xl p-10 lg:mb-0 gap-10">
         <NavLink to='/' className={`flex justify-start items-center mb-5 pl-5`}>
           <FaChevronLeft color="white" />
           <p className="ml-2 text-white">VOLVER AL INICIO</p>

@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 const Home = () => {
   return (
     <div className='flex flex-col lg:flex-row lg:items-center justify-center lg:justify-around h-screen md:pt-24 lg:px-10'>
-      <div className='lg:bg-white/10 rounded-3xl mt-3 mb-10 lg:mt-0 lg:mb-0'>
+      <div className='lg:bg-black/40 rounded-3xl mt-3 mb-10 lg:mt-0 lg:mb-0'>
         <div className='flex flex-col text-white lg:text-left p-4 rounded-full backdrop-blur-xl max-w-[420px]'>
           <h1 className='text-6xl font-extrabold pb-3'>
             PENNACloud
